@@ -1,0 +1,8 @@
+val sqlContext = sc.read.csv("places.csv")
+
+val df = sqlContext.sql("SELECT price AS price, COUNT(*) AS placecount FROM places GROUP BY price")
+
+df.show()
+df.filter(df("price") === "$" || df("price") === "$$" || df("price") === "$$$").show()
+
+System.exit(0)
